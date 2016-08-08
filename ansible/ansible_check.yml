@@ -1,0 +1,15 @@
+---
+- hosts: myservers 
+  tasks:
+   - name: stat hosts.org
+     stat: path=/etc/ansible/hosts.org
+     register: hosts_stat
+   
+   - name: Move hosts to hosts.org
+     command: creates="/etc/ansible/hosts.org" mv /etc/ansible/hosts /etc/ansible/hosts.org
+     when: not hosts_stat.stat.exists
+
+   - name: list files
+     shell: 'hostname; ls /etc/ansible/host*'
+     register: out
+   - debug: var=out.stdout_lines

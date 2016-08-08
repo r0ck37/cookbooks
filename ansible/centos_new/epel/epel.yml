@@ -1,0 +1,5 @@
+--- 
+- hosts: centos
+  tasks:
+  - name: Install epel
+    yum: pkg=epel-release state=present update_cache=yes

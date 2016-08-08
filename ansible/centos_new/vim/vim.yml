@@ -1,0 +1,5 @@
+--- 
+- hosts: centos
+  tasks:
+  - name: Install vim
+    yum: pkg=vim state=present update_cache=yes

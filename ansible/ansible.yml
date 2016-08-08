@@ -1,0 +1,9 @@
+---
+- hosts: myservers 
+  tasks:
+   - name: Install Ansible 
+     yum: pkg=ansible state=latest
+   - name: check Ansible version
+     shell: 'hostname; ansible --version'
+     register: out
+   - debug: var=out.stdout_lines
